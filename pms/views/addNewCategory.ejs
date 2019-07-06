@@ -27,8 +27,10 @@
                             <li><a href="add-new-password" class="dropdown-item">Add New Password</a></li>
                           <li><a href="view-all-password" class="dropdown-item">View All Password</a></li>
                         </ul></li>
+                        <li><a href="/logout">Logout</a></li>
                   </ul>
-                 
+                  <div class="navbar-header" style="float: right;"> <a class="navbar-brand" href="#">Loggedin As: <% if(loginUser){ %> <%= loginUser  %> <% } %></a></div>
+                
                 </div>
               </nav>
               <div class="container">
@@ -40,12 +42,19 @@
                                     <div class="panel-title"> Add New Password Category</div>
                                      </div>  
                                 <div class="panel-body" >
-                                    <form action="/" id="EmployeeForm" class="form-horizontal" method="post"  role="form">
+                                    <form action="/add-new-category" id="EmployeeForm" class="form-horizontal" method="post"  role="form">
                                       
                                         <div class="form-group">
+                                          <% if(errors !=''){%>
+                                          <p style="text-align: center;color:red;"><%= errors.passwordCategory.msg %></p>
+                                            <% } %>
+
+                                            <% if(success !=''){%>
+                                              <p style="text-align: center;color:green;"><%= success %></p>
+                                                <% } %>
                                             <label for="username" class="col-md-3 control-label">Category Name</label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" name="uname" placeholder="Enter YourPassword Category Name">
+                                                <input type="text" class="form-control" name="passwordCategory" placeholder="Enter YourPassword Category Name">
                                             </div>
                                         </div>
                                        
