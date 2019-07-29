@@ -11,6 +11,7 @@ var addNewPassRouter = require('./routes/add-new-password');
 var viewAllPassRouter = require('./routes/view-all-password');
 var passwordDetailsRouter = require('./routes/password-detail');
 var usersRouter = require('./routes/users');
+var joinRouter = require('./routes/join');
 var app = express();
 
 // view engine setup
@@ -32,6 +33,8 @@ app.use('/add-new-password', addNewPassRouter);
 app.use('/view-all-password', viewAllPassRouter);
 app.use('/password-detail', passwordDetailsRouter);
 app.use('/users', usersRouter);
+app.use('/joinResult', joinRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

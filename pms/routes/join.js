@@ -59,45 +59,24 @@ router.get('/',checkLoginUser, function(req, res, next) {
  
     var loginUser=localStorage.getItem('loginUser');
   
-    
-    var options = {
-      offset:   1, 
-      limit:    3
-  };
+  passModel.aggregate([
+    {
+      $lookup:
+        {
+          from: "password_categories",
+          localField: "password_category",
+          foreignField: "passord_category",
+          as: "pass_cat_details"
+        }
+   },
+   { $unwind : "$pass_cat_details" }
+ ]).exec(function(err,results){
+     if(err) throw err;
+     console.log(results);
+     res.send(results);
+
+ });
   
-  passModel.paginate({},options).then(function(result){
-   //console.log(result);
-  res.render('view-all-password', { title: 'Password Management System',
-  loginUser: loginUser,
-  records: result.docs,
-    current: result.offset,
-    pages: Math.ceil(result.total / result.limit) 
   });
-  
-  });
-  });
-  
-  router.get('/:page',checkLoginUser, function(req, res, next) {
-   
-    var loginUser=localStorage.getItem('loginUser');
-  
-    var perPage = 3;
-    var page = req.params.page || 1;
-  
-    getAllPass.skip((perPage * page) - perPage)
-    .limit(perPage).exec(function(err,data){
-  if(err) throw err;
-  passModel.countDocuments({}).exec((err,count)=>{    
-  res.render('view-all-password', { title: 'Password Management System',
-  loginUser: loginUser,
-  records: data,
-    current: page,
-    pages: Math.ceil(count / perPage) 
-  });
-    });
-  });
-  });
-  
-  
   
   module.exports = router;

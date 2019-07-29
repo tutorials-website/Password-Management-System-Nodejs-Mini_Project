@@ -56,7 +56,11 @@ return res.render('signup', { title: 'Password Management System', msg:'Email Al
 
 router.get('/', checkLoginUser,function(req, res, next) {
     var loginUser=localStorage.getItem('loginUser');
-    res.render('dashboard', { title: 'Password Management System', loginUser:loginUser,msg:'' });
+    passModel.countDocuments({}).exec((err,count)=>{
+      passCatModel.countDocuments({}).exec((err,countasscat)=>{    
+    res.render('dashboard', { title: 'Password Management System', loginUser:loginUser,msg:'',totalPassword:count, totalPassCat:countasscat });
+    });
+  });
   });
 
   module.exports = router;

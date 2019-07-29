@@ -1,9 +1,94 @@
 <%- include('header') %>
+<style>
+.info-box {
+    display: block;
+    min-height: 90px;
+    background: #fff;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    border-radius: 2px;
+    margin-bottom: 15px;
+    border: 3px solid #4dc0ef;
+}
+.warning-box{
+  display: block;
+    min-height: 90px;
+    background: #fff;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    border-radius: 2px;
+    margin-bottom: 15px;
+    border: 3px solid #ff9800;
+}
+.bg-aqua, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body {
+    background-color: #00c0ef !important;
+    color: #fff !important;
+
+}
+.bg-warning{background-color: #ff9800 !important;
+    color: #fff !important;}
+.info-box-content {
+    padding: 5px 10px;
+    margin-left: 90px;
+}
+.info-box-icon {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 2px;
+    display: block;
+    float: left;
+    height: 87px;
+    width: 90px;
+    text-align: center;
+    font-size: 45px;
+    line-height: 90px;
+    background: rgba(0,0,0,0.2);
+}
+.info-box-text {
+    display: block;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.info-box-number {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+}
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+</style>
   <div class="container">
         <div class="row">
             <h1>User Dashboard</h1>
             <br>
         
       </div>
+      <div class="col-sm-4 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-aqua"><i class="fa fa-list-alt"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Total Password Category</span>
+                <span class="info-box-number"><%= totalPassCat %></span>
+            </div><!-- /.info-box-content -->
+        </div><!-- /.info-box -->
+    </div>
+    <div class="col-sm-4 col-xs-12">
+      <div class="warning-box">
+          <span class="info-box-icon bg-warning"><i class="fa fa-key"></i></span>
+          <div class="info-box-content">
+              <span class="info-box-text">Total Passwords</span>
+              <span class="info-box-number"><%= totalPassword %></span>
+          </div><!-- /.info-box-content -->
+      </div><!-- /.info-box -->
+  </div>
     </div>
     <%- include('footer')%>
